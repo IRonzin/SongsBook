@@ -14,14 +14,17 @@ public class DbManager extends SQLiteAssetHelper{
     public static final String SongName = "name";
     public static final String SongText = "text";
 
+    public final SQLiteDatabase SongsDb;
+
     public DbManager(Context context) {
         super(context, DbName, null, DbVersion);
+        SongsDb=getReadableDatabase();
     }
 
 
     public String[] GetAllSongs() {
-        SQLiteDatabase songsDb=getReadableDatabase();
-        Cursor cursor = songsDb.query(DbManager.SongsTable, new String[]{SongNumber, SongName},
+
+        Cursor cursor = SongsDb.query(DbManager.SongsTable, new String[]{SongNumber, SongName},
                 null,null,null,null, SongNumber);
         String[] songs=arrayFromCursor(cursor);
         cursor.close();

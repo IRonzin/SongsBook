@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@android:id/text1"
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/textItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textAppearance="?android:attr/textAppearanceLarge"
     android:gravity="center_vertical"
+    android:minHeight="6dip"
     android:paddingLeft="6dip"
-    android:minHeight="6dip">
-</TextView>
+    android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
