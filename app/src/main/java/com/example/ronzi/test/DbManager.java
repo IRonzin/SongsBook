@@ -32,14 +32,15 @@ public class DbManager extends SQLiteAssetHelper{
         return songs;
     }
 
-    public String[] GetSongTextById(String songId) {
+    public String GetSongTextById(String songId) {
 
         Cursor cursor = SongsDb.query(DbManager.SongsTable, new String[]{SongText},
-                null,null,null,null, SongNumber);
-        String[] songs=arrayFromCursor(cursor);
+                SongNumber + " = ?",new String[] {songId},null,null, SongNumber);
+        cursor.moveToFirst();
+        String songText=cursor.getString(cursor.getColumnIndex(SongText));
         cursor.close();
 
-        return songs;
+        return songText;
     }
 
     private String[] arrayFromCursor(Cursor cursor) {

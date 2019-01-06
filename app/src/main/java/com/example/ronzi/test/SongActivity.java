@@ -19,7 +19,7 @@ public class SongActivity extends AppCompatActivity {
         textView=findViewById(R.id.songTextView);
         Intent intent = getIntent();
         String songId=intent.getStringExtra("songId");
-        textView.setText(songId);
+        textView.setText(dbManager.GetSongTextById(songId));
 
 
     }
