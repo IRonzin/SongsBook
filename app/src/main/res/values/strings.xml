@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Test</string>
+    <string name="app_name">Our songs</string>
     <string name="title_activity_song">SongActivity</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>

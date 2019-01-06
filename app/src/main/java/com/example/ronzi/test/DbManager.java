@@ -32,6 +32,16 @@ public class DbManager extends SQLiteAssetHelper{
         return songs;
     }
 
+    public String[] GetSongTextById(String songId) {
+
+        Cursor cursor = SongsDb.query(DbManager.SongsTable, new String[]{SongText},
+                null,null,null,null, SongNumber);
+        String[] songs=arrayFromCursor(cursor);
+        cursor.close();
+
+        return songs;
+    }
+
     private String[] arrayFromCursor(Cursor cursor) {
 
         int length = cursor.getCount();

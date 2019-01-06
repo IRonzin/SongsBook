@@ -8,12 +8,15 @@ import android.widget.TextView;
 public class SongActivity extends AppCompatActivity {
 
     TextView textView;
+    DbManager dbManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song);
 
-        textView=findViewById(R.id.textView);
+        dbManager=new DbManager(this);
+
+        textView=findViewById(R.id.songTextView);
         Intent intent = getIntent();
         String songId=intent.getStringExtra("songId");
         textView.setText(songId);

@@ -7,7 +7,7 @@
     tools:context=".SongActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/songTextView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="4dp"
@@ -15,6 +15,9 @@
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="2dp"
         android:text="TextView"
+        android:textColor="@color/design_default_color_primary_dark"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
