@@ -6,20 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".SongActivity">
 
-    <TextView
-        android:id="@+id/songTextView"
+    <ScrollView
+        android:id="@+id/songScrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="2dp"
-        android:text="TextView"
-        android:textColor="@color/design_default_color_primary_dark"
-        android:textAlignment="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/songTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/design_default_color_primary_dark"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>
