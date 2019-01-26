@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     ListView lvMain;
     SearchView svMain;
     DbManager dbManager;
-    ArrayAdapter<String> adapter;
+    SearchArrayAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         String[] songs=dbManager.GetAllSongs();
 
-        adapter=new ArrayAdapter<String>(this,
+        adapter=new SearchArrayAdapter(this,
                 R.layout.list_item, songs);
         lvMain.setAdapter(adapter);
 
