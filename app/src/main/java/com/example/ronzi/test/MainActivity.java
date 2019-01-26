@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
                 R.layout.list_item, songs);
         lvMain.setAdapter(adapter);
 
+        setTitle(R.string.YoungSongs);
+
         ConfigureSearchView();
 
         ConfigureListView();
