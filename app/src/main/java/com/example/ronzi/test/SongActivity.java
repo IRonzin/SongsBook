@@ -10,19 +10,16 @@ public class SongActivity extends AppCompatActivity {
 
     ScrollView scrollView;
     TextView textView;
-    DbManager dbManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song);
 
-        dbManager=new DbManager(this);
-
         scrollView=findViewById(R.id.songScrollView);
         textView=findViewById(R.id.songTextView);
         Intent intent = getIntent();
-        String songId=intent.getStringExtra("songId");
-        textView.setText(dbManager.GetSongTextById(songId));
+        setTitle(intent.getStringExtra("songTitle"));
+        textView.setText(intent.getStringExtra("songText"));
 
 
     }

@@ -7,24 +7,23 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 public class DbManager extends SQLiteAssetHelper{
 
     public static final int DbVersion = 1;
-    public static final String DbName = "SongsDb.db";
     public static final String SongsTable = "Songs";
 
     public static final String SongNumber = "id";
     public static final String SongName = "name";
     public static final String SongText = "text";
 
-    public final SQLiteDatabase SongsDb;
+    public SQLiteDatabase ConnectionSongsDb;
 
-    public DbManager(Context context) {
+    public DbManager(Context context, String DbName) {
         super(context, DbName, null, DbVersion);
-        SongsDb=getReadableDatabase();
+        ConnectionSongsDb=getReadableDatabase();
     }
 
 
     public String[] GetAllSongs() {
 
-        Cursor cursor = SongsDb.query(DbManager.SongsTable, new String[]{SongNumber, SongName},
+        Cursor cursor = ConnectionSongsDb.query(DbManager.SongsTable, new String[]{SongNumber, SongName},
                 null,null,null,null, SongNumber);
         String[] songs=arrayFromCursor(cursor);
         cursor.close();
@@ -34,7 +33,7 @@ public class DbManager extends SQLiteAssetHelper{
 
     public String GetSongTextById(String songId) {
 
-        Cursor cursor = SongsDb.query(DbManager.SongsTable, new String[]{SongText},
+        Cursor cursor = ConnectionSongsDb.query(DbManager.SongsTable, new String[]{SongText},
                 SongNumber + " = ?",new String[] {songId},null,null, SongNumber);
         cursor.moveToFirst();
         String songText=cursor.getString(cursor.getColumnIndex(SongText));

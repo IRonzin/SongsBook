@@ -18,12 +18,23 @@
                                 <PersistentState>
                                   <option name="children">
                                     <map>
+                                      <entry key="backgroundImage">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="scalingPercent" value="140" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                       <entry key="foregroundImage">
                                         <value>
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="52" />
+                                                <entry key="scalingPercent" value="95" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -33,7 +44,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="foregroundImage" value="C:\Users\ronzi\Downloads\sing-a-song-png-karaoke-microphone-music-sing-song-speaker-voice-icon-512.png" />
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="f9fbf8" />
+                                      <entry key="foregroundImage" value="C:\Users\ronzi\Downloads\sing a song4.png" />
                                     </map>
                                   </option>
                                 </PersistentState>

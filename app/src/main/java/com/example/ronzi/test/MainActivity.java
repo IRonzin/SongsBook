@@ -10,13 +10,16 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Switch;
 
 public class MainActivity extends AppCompatActivity {
 
     ListView lvMain;
     SearchView svMain;
-    DbManager dbManager;
+    DbManager blessSongsDbManager;
+    DbManager youngSongsDbManager;
     SearchArrayAdapter adapter;
+    SongsBooksSet connectedSongsBook;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,19 +28,50 @@ public class MainActivity extends AppCompatActivity {
         lvMain= findViewById(R.id.lvMain);
         svMain= findViewById(R.id.svMain);
 
-        dbManager=new DbManager(this);
+        blessSongsDbManager =new DbManager(this, getText(R.string.BlessSongsDb).toString());
+        youngSongsDbManager = new DbManager(this, getText(R.string.YoungSongsDb).toString());
 
-        String[] songs=dbManager.GetAllSongs();
-
-        adapter=new SearchArrayAdapter(this,
-                R.layout.list_item, songs);
-        lvMain.setAdapter(adapter);
-
-        setTitle(R.string.YoungSongs);
+        SetConnectedSongsBook(SongsBooksSet.YoungSongsBook);
 
         ConfigureSearchView();
 
         ConfigureListView();
+    }
+
+    private void UpdateActivity() {
+        String[] songs;
+        switch (connectedSongsBook) {
+            case YoungSongsBook:  songs = youngSongsDbManager.GetAllSongs();
+                setTitle(R.string.YoungSongs);
+                break;
+            case BlessSongsBook:  songs = blessSongsDbManager.GetAllSongs();
+                setTitle(R.string.BlessSongs);
+                break;
+            default: songs= new String[]{};
+                break;
+            }
+
+        adapter=new SearchArrayAdapter(this,
+                R.layout.list_item, songs);
+        adapter.getFilter().filter(svMain.getQuery());
+        lvMain.setAdapter(adapter);
+
+    }
+
+    private String GetSongTextById(String songId)
+    {
+        String songText;
+        switch (connectedSongsBook) {
+            case YoungSongsBook:  songText = youngSongsDbManager.GetSongTextById(songId);
+                setTitle(R.string.YoungSongs);
+                break;
+            case BlessSongsBook:  songText = blessSongsDbManager.GetSongTextById(songId);
+                setTitle(R.string.BlessSongs);
+                break;
+            default: songText= "";
+                break;
+        }
+        return songText;
     }
 
     @Override
@@ -52,23 +86,32 @@ public class MainActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.YoungSongs:
-
+                SetConnectedSongsBook(SongsBooksSet.YoungSongsBook);
                 return true;
             case R.id.BlessSongs:
-
+                SetConnectedSongsBook(SongsBooksSet.BlessSongsBook);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+    private void SetConnectedSongsBook(SongsBooksSet songsBook)
+    {
+        if(connectedSongsBook==songsBook)
+            return;
+
+        connectedSongsBook=songsBook;
+        UpdateActivity();
+    }
     private void ConfigureListView() {
         lvMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = (String)lvMain.getItemAtPosition(position);
                 String songId= item.split(" ")[0];
                 Intent intent = new Intent(parent.getContext(), SongActivity.class);
-                intent.putExtra("songId", songId);
+                intent.putExtra("songTitle", item);
+                intent.putExtra("songText", GetSongTextById(songId));
                 startActivity(intent);
         }
         });
